@@ -27,7 +27,7 @@
                 </div>
                 <ul class="nav navbar-nav">
 
-                    <li><a class="navSpace" href="<?php echo $path; ?>views/Admin.php">Admin</a></li>
+                    <!-- <li><a class="navSpace" href="<?php echo $path; ?>views/Admin.php">Admin</a></li>
                     <li><a class="navSpace" href="<?php echo $path; ?>views/ExerciseListing.php">Exercises</a></li>
                     <li><a class="navSpace" href="<?php echo $path; ?>views/Areas.php">Areas</a></li>
                     <li><a class="navSpace" href="<?php echo $path; ?>views/Muscles.php">Muscles</a></li>
@@ -36,7 +36,7 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
 
-                    <li><a id="logout" class="navSpace" href="<?php echo $path; ?>logout.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>    
+                    <li><a id="logout" class="navSpace" href="<?php echo $path; ?>logout.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>     -->
 
                 </ul>
             </div>

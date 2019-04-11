@@ -8,7 +8,7 @@
     // 4. FUNCTIONS FOR MUSCLE QUERIES
     //********************************************* 
 
-    class DB {
+    class ExerciseAccess {
 
         private $dbh;
 
@@ -39,22 +39,24 @@
         // DESCRIPTION: This function returns information for one exercise.
         // RETURNS: Array of all exercise information in the database for the specified exercise.
         // ARGUMENTS: exerID of the exercise to be returned.
-        function getExercise( selectID ) {
+        function getExercise( $selectID ) {
 
             // Executes query
             try {
 
                 $data = array();
                 $stmt = $this->dbh->prepare( "
-                    SELECT exercise.exerID, exercise.exerName, 
-                    area.areaName, muscle.muscleName, 
-                    exercise.exerDescription, exercise.exerInstructions
+                    SELECT exerID, exerName, areaName, muscleName, 
+                    exerDescription, exerInstructions, userName,
+                    exerArea, exerMuscle, exerAuthor 
                     FROM exercise
                     JOIN area
-                    ON exercise.exerArea = area.areaID
+                    ON exerArea = areaID
                     JOIN muscle
-                    ON exercise.exerMuscle = muscle.muscleName
-                    WHERE ( exercise.exerID = {$selectID} )
+                    ON exerMuscle = muscleID
+                    JOIN user
+                    ON exerAuthor = userID 
+                    WHERE exerID = {$selectID};
                 " );
                 $stmt->execute();
 
@@ -80,14 +82,14 @@
 
                 $data = array();
                 $stmt = $this->dbh->prepare( "
-                    SELECT exercise.exerID, exercise.exerName, 
-                    area.areaName, muscle.muscleName, 
-                    exercise.exerDescription, exercise.exerInstructions
+                    SELECT exerID, exerName, areaName, muscleName, exerDescription, exerInstructions, userName 
                     FROM exercise
                     JOIN area
-                    ON exercise.exerArea = area.areaID
+                    ON exerArea = areaID
                     JOIN muscle
-                    ON exercise.exerMuscle = muscle.muscleName
+                    ON exerMuscle = muscleID
+                    JOIN user
+                    ON exerAuthor = userID
                 " );
                 $stmt->execute();
 
@@ -107,7 +109,7 @@
         // DESCRIPTION: This function returns information of all exercises with the same area that is passed in.
         // RETURNS: Array of all exercise information in the database.
         // ARGUMENTS: exerArea for the exercises that exercise that area.
-        function getExercisesByArea( selectArea ) {
+        function getExercisesByArea( $selectArea ) {
 
             // Executes query
             try {
@@ -136,7 +138,7 @@
         // DESCRIPTION: This function returns information of all exercises with the same muscle that is passed in.
         // RETURNS: Array of all exercise information in the database.
         // ARGUMENTS: exerMuscle for the exercises that exercise that muscle.
-        function getExercisesByMuscle( selectMuscle ) {
+        function getExercisesByMuscle( $selectMuscle ) {
 
             // Executes query
             try {
@@ -201,7 +203,7 @@
 
         // DESCRIPTION: This function returns all muscle information for each muscle in the database.
         // RETURNS: Array of all muscle information in the database.
-        function getMuscles() {
+        function getMuscles() { //  ᕦ(ò_óˇ)ᕤ
 
             // Executes query
             try {

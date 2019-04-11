@@ -6,7 +6,7 @@
     // 2. FUNCTIONS FOR LOGGING
     //********************************************* 
 
-    class DB {
+    class LoginHandler {
 
         private $dbh;
 
@@ -44,7 +44,7 @@
 
                 $data = array();
                 $stmt = $this->dbh->prepare( "
-                    SELECT userID 
+                    SELECT userID, userType 
                     FROM user 
                     WHERE ( userEmail LIKE '{$inputEmail}' )
                     AND ( userPassword LIKE '{$inputPassword}' )
@@ -56,9 +56,14 @@
                 }
 
                 if ( count($data) == 1 ) {
-                    return true;
+
+                    $_SESSION['loggedIn'] = true;
+                    $_SESSION['userID'] = $data[0][0];
+                    $_SESSION['userPermissions'] = $data[0][1];
+                    header("Location: {$path}index.php");
+
                 } else {
-                    return false;
+                    $_SESSION['loggedIn'] = false;
                 }
 
             } catch (PDOException $e) {

@@ -7,7 +7,7 @@
     // 3. FUNCTIONS FOR EXERCISE QUERIES
     //********************************************* 
 
-    class DB {
+    class AdminAccess {
 
         private $dbh;
 
@@ -67,14 +67,14 @@
         // DESCRIPTION: This function returns all data for on user.  
         // RETURNS: Array with information on one user
         // ARGUMENTS: userID for user that will be displayed
-        function getUser( selectedID ) {
+        function getUser( $selectedID ) {
 
             // Executes query
             try {
 
                 $data = array();
                 $stmt = $this->dbh->prepare( "
-                    SELECT user.userID, user.userName, user.userEmail, user.userPassword, user_type.typeName
+                    SELECT user.userID, user.userName, user.userEmail, user.userPassword, user_type.typeName, user.userType
                     FROM user
                     JOIN user_type
                     ON user.userType = user_type.typeID
@@ -98,7 +98,7 @@
         // DESCRIPTION: This function updates a user record in the database. 
         // ARGUMENTS: Takes in userID of user to be updated along with
         // the updated userName, userPassword, userEmail, and userType.   
-        function editUser( updateID, updateName, updatePassword, updateEmail, updateType ) {
+        function editUser( $updateID, $updateName, $updatePassword, $updateEmail, $updateType ) {
 
             // Executes query
             try {
@@ -120,7 +120,7 @@
 
         // DESCRIPTION: This function adds a user to the database.
         // ARGUMENTS: Takes in userName, userPassword, userEmail, and userType for new user.   
-        function createUser( createName, createPassword, createEmail, createType ) {
+        function createUser( $createName, $createPassword, $createEmail, $createType ) {
 
             // Executes query
             try {
@@ -142,7 +142,7 @@
 
         // DESCRIPTION: This function deletes a user record from the database.
         // ARGUMENTS: Takes in userID of the user that is to be deleted.   
-        function deleteUser( deleteID ) {
+        function deleteUser( $deleteID ) {
 
             // Executes query
             try {
@@ -167,8 +167,8 @@
 
         // DESCRIPTION: This function updates an exercise record in the database. 
         // ARGUMENTS: Takes in exerID of exercise to be updated along with
-        // the updated exerName, exerArea, exerMuscle, exerDescription, exerInstructions, and authorUser.   
-        function editExercise( editID, editName, editArea, editMuscle, editDescription, editInstructions, editAuthor ) {
+        // the updated exerName, exerArea, exerMuscle, exerDescription, exerInstructions, and editAuthor.   
+        function editExercise( $editID, $editName, $editArea, $editMuscle, $editDescription, $editInstructions, $editAuthor ) {
 
             // Executes query
             try {
@@ -177,8 +177,8 @@
                 $stmt = $this->dbh->prepare( "
                     UPDATE exercise
                     SET exerName = '{$editName}', exerArea = {$editArea}, 
-                    exerMuscle = {$editMuscle}, exerDescription = {$editDescription},
-                    exerInstructions = {$editInstructions}
+                    exerMuscle = {$editMuscle}, exerDescription = '{$editDescription}',
+                    exerInstructions = '{$editInstructions}', exerAuthor = {$editAuthor}
                     WHERE ( exerID = {$editID} ) 
                 " );
                 $stmt->execute();
@@ -192,8 +192,8 @@
 
         // DESCRIPTION: This function adds an exercise to the database. 
         // ARGUMENTS: Takes in exerName, exerArea, exerMuscle, exerDescription, exerInstructions,
-        // and authorUser for an exercise to be created.   
-        function createExercise( createName, createArea, createMuscle, createDesc, createInstr, createAuthor ) {
+        // and exerAuthor for an exercise to be created.   
+        function createExercise( $createName, $createArea, $createMuscle, $createDesc, $createInstr, $createAuthor ) {
 
             // Executes query
             try {
@@ -201,21 +201,9 @@
                 // Adds record to the exercise table
                 $stmt = $this->dbh->prepare( "
                     INSERT INTO exercise
-                    ( exerName, exerArea, exerMuscle, exerDescription, exerInstructions )
+                    ( exerName, exerArea, exerMuscle, exerDescription, exerInstructions, exerAuthor )
                     VALUES
-                    ( '{$createName}', {$createArea}, {$createMuscle}, '{$createDesc}', '{$createInstr}' )
-                " );
-                $stmt->execute();
-
-                // Gets the ID of the query
-                $authorID = $dbh->lastInsertId();
-
-                // Adds record to author table
-                $stmt = $this->dbh->prepare( "
-                    INSERT INTO author
-                    ( authorUser, authorExer )
-                    VALUES
-                    ( {$authorID}, {$createAuthor} )
+                    ( '{$createName}', {$createArea}, {$createMuscle}, '{$createDesc}', '{$createInstr}', {$createAuthor} )
                 " );
                 $stmt->execute();
 
@@ -228,7 +216,7 @@
 
         // DESCRIPTION: This function deletes an exercise record from the database.
         // ARGUMENTS: Takes in exerID of the exercise that is to be deleted.   
-        function deleteExercise( deleteID ) {
+        function deleteExercise( $deleteID ) {
 
             // Executes query
             try {
@@ -237,13 +225,6 @@
                 $stmt = $this->dbh->prepare( "
                     DELETE FROM exercise
                     WHERE( exerID = {$deleteID} )
-                " );
-                $stmt->execute();
-
-                // Deletes the record from the author table
-                $stmt = $this->dbh->prepare( "
-                    DELETE FROM author
-                    WHERE( authorExer = {$deleteID} )
                 " );
                 $stmt->execute();
 

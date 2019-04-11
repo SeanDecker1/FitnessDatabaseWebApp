@@ -6,7 +6,7 @@
     // 2. FUNCTIONS FOR TRAINER QUERIES
     //********************************************* 
 
-    class DB {
+    class TrainerAccess {
 
         private $dbh;
 
