@@ -11,7 +11,7 @@
 ?>
 
 <?php
-    include ($path.'../FitnessDatabaseWebApp/views/login/index.php');
+    header("Location: {$path}views/login/index.php");
 ?> 
 
 <?php

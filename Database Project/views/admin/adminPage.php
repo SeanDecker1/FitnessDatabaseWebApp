@@ -34,7 +34,7 @@
             // Button to create a new user
             echo ("
                 <hr />
-                <a href='<?php echo $path; ?>views/testCreate.php?table=user' class='btn blueButton'>Create User</a>
+                <a href='{$path}views/testCreate.php?table=user' class='btn blueButton'>Create User</a>
                 <hr />
             ");
 
@@ -73,7 +73,7 @@
 
         echo ("
             <hr />
-            <a href='<?php echo $path; ?>views/testCreate.php?table=exercise' class='btn blueButton'>Create Exercise</a>
+            <a href='{$path}views/testCreate.php?table=exercise' class='btn blueButton'>Create Exercise</a>
             <hr />
         ");
 
