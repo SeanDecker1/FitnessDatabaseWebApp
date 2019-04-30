@@ -7,6 +7,10 @@
         // If the user is an admin, they are able to modify user information
         if  ( $_SESSION['userPermissions'] == 3 ) {
             
+            echo ("
+                <h2 class='centerHeader'>User Information:</h2>
+            ");
+
             // Gets all user information
             $adminData = $adminDB->getUsers();
 
@@ -15,8 +19,6 @@
                 
                 // Displays all user information
                 echo ("
-                    <h2 class='centerHeader'>User Information:</h2>
-
                     <div class='list-group-item postContainer text-center'>
                         <p>ID: <b>{$adminData[$i][0]}</b></p>
                         <p>Name: {$adminData[$i][1]}</p>
@@ -40,6 +42,11 @@
 
         } //Ends if permissions check
  
+        echo ("
+            <h2 class='centerHeader'>Exercise Information:</h2>
+        ");
+
+
         // Gets all exercise information
         $exerciseData = $exerciseDB->getAllExercises();
 
@@ -51,8 +58,6 @@
 
                 // Displays all exercise information
                 echo ("
-                    <h2 class='centerHeader'>Exercise Information:</h2>
-
                     <div class='list-group-item postContainer text-center'>
                         <p>ID: <b>{$exerciseData[$i][0]}</b></p>
                         <p>Name: {$exerciseData[$i][1]}</p>
