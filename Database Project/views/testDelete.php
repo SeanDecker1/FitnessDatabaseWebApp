@@ -19,13 +19,13 @@
 
 		// Deletes the record and relocates
 		$adminDB->deleteUser( $selectID );
-		header("Location: {$path}index.php");
+		header("Location: {$path}views/admin/index.php");
 
 	} else if ( isset( $selectTable ) and $selectTable == "exercise" ) {
 
 		// Deletes the record and relocates
 		$adminDB->deleteExercise( $selectID );
-		header("Location: {$path}index.php");
+		header("Location: {$path}views/admin/index.php");
 
 	}
 

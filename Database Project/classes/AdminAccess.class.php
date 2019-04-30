@@ -98,7 +98,7 @@
         // DESCRIPTION: This function updates a user record in the database. 
         // ARGUMENTS: Takes in userID of user to be updated along with
         // the updated userName, userPassword, userEmail, and userType.   
-        function editUser( $updateID, $updateName, $updatePassword, $updateEmail, $updateType ) {
+        function editUser( $updateID, $updateName, $updateEmail, $updatePassword, $updateType ) {
 
             // Executes query
             try {
@@ -120,7 +120,7 @@
 
         // DESCRIPTION: This function adds a user to the database.
         // ARGUMENTS: Takes in userName, userPassword, userEmail, and userType for new user.   
-        function createUser( $createName, $createPassword, $createEmail, $createType ) {
+        function createUser( $createName, $createEmail, $createPassword, $createType ) {
 
             // Executes query
             try {

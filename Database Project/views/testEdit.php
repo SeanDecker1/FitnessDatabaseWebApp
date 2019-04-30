@@ -15,7 +15,7 @@
 
 		// Updates record and relocates
         $adminDB->editUser( $_POST['userID'], $_POST['userName'], $_POST['userEmail'], $_POST['userPassword'], $_POST['userType'] );
-		header("Location: {$path}index.php");
+		header("Location: {$path}views/admin/index.php");
 
 	}
 
@@ -25,7 +25,7 @@
 		// Updates record and relocates
         $adminDB->editExercise( $_POST['exerID'], $_POST['exerName'], $_POST['exerArea'], $_POST['exerMuscle'],
         $_POST['exerDesc'], $_POST['exerInstr'], $_POST['exerAuthor'] );
-		header("Location: {$path}index.php");
+		header("Location: {$path}views/admin/index.php");
 
 	}
 

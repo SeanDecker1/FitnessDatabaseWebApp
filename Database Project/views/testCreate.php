@@ -11,8 +11,8 @@
 	if ( isset( $_POST['createUser'] ) ) {
 
 		// Adds the record and relocates
-		$adminDB->createUser( $_POST['userName'], $POST['userEmail'], $_POST['userPassword'], $_POST['userType'] );
-		header("Location: {$path}index.php");
+		$adminDB->createUser( $_POST['userName'], $_POST['userEmail'], $_POST['userPassword'], $_POST['userType'] );
+		header("Location: {$path}views/admin/index.php");
 
 	}
 
@@ -21,7 +21,7 @@
 
 		// Adds the record and relocates
 		$adminDB->createExercise( $_POST['exerName'], $_POST['exerArea'], $_POST['exerMuscle'], $_POST['exerDesc'], $_POST['exerInstr'], $_POST['exerAuthor'] );
-		header("Location: {$path}index.php");
+		header("Location: {$path}views/admin/index.php");
 
 	}
 
@@ -45,7 +45,7 @@
             </div>
             <div class="form-group">
                 <label for="userEmail">Email:</label>
-                <input type="text" class="form-control" id="name" name="userEmail" required>
+                <input type="email" class="form-control" id="email" name="userEmail" required>
             </div>
             <div class="form-group">
                 <label for="userPassword">Password:</label>
