@@ -18,7 +18,7 @@ body {
 
 /* Begins Navbar Styles */
 .navbarCustom {
-    background-color: #0CA8D1;
+    background-color: #f44336;
     height: 60px;
     color: #FEFFFF;
     font-weight: bold;
@@ -49,7 +49,7 @@ body {
 /* Begins Container Styles */
 .postContainer {
     overflow: hidden;
-    background-color: #0CA8D1;
+    background-color: #f44336;
     color: #FEFFFF;
     font-weight: bold;
     margin-top: 15px;
@@ -59,12 +59,12 @@ body {
 
 /* Begins Button Styles */
 .blueButton {
-    background-color: #0CA8D1;
+    background-color: #f44336;
     color: #FEFFFF;
 }
 
 .blueButton:hover {
-    border-color: #0CA8D1;
+    border-color: #220200;
 }
 
 .greenButton {
